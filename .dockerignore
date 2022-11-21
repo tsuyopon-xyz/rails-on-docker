@@ -1,0 +1,15 @@
+.env*
+.git
+.gitignore
+.cache
+.codeclimate.yml
+.dockerignore
+.gitlab-ci.yml
+.hound.yml
+.travis.yml
+LICENSE.md
+README.md
+docker-compose.*
+Dockerfile
+log
+Makefile
