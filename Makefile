@@ -19,6 +19,12 @@ build: ## build docker compose
 dbcreate: ## run rails db:create in docker container
 	docker compose run web bin/rails db:create
 
+dbmigrate: ## run "bin/rails db:migrate"
+	docker compose run web bin/rails db:migrate
+
+test: ## run "bin/rails test"
+	docker compose run web bin/rails test
+
 console: ## run rails console in web(rails) container
 	docker compose run web bin/rails console
 
