@@ -23,19 +23,19 @@ dbmigrate: ## run "bin/rails db:migrate"
 	docker compose run web bin/rails db:migrate
 
 test: ## run "bin/rails test"
-	docker compose run web bin/rails test
+	docker compose run --rm web bin/rails test
 
 console: ## run rails console in web(rails) container
-	docker compose run web bin/rails console
+	docker compose run --rm  web bin/rails console
 
 webpacker_install: ## run "rails webpacker:install"
-	docker compose run web bin/rails webpacker:install
+	docker compose run --rm  web bin/rails webpacker:install
 
 login: ## login docker container of web(rails env)
-	docker compose run web bash
+	docker compose run --rm  web bash
 
 bundle_install: ## run bundle install
-	docker compose run web bundle install
+	docker compose run --rm web bundle install
 
 help: ## Show options
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
