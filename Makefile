@@ -13,14 +13,23 @@ logs: ## Tail docker compose logs
 ps: ## Check container status
 	docker compose ps
 
+build: ## build docker compose
+	docker compose build
+
 rails_dbcreate: ## run rails db:create in docker container
 	docker compose run --rm web bin/rails db:create
 
 rails_console: ## run rails console in web(rails) container
 	docker compose run --rm web bin/rails console
 
+rails_webpacker_install: ## run "rails webpacker:install"
+	docker compose run --rm web bin/rails webpacker:install
+
 rails_login: ## login docker container of web(rails env)
 	docker compose run --rm web bash
+
+rails_bundle_install: ## run bundle install
+	docker compose run --rm web bundle install
 
 help: ## Show options
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
