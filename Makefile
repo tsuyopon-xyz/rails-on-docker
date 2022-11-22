@@ -16,6 +16,9 @@ ps: ## Check container status
 rails_dbcreate: ## run rails db:create in docker container
 	docker compose run --rm web bin/rails db:create
 
+rails_login: ## run rails db:create in docker container
+	docker compose run --rm web bash
+
 help: ## Show options
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
 		awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
