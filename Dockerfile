@@ -9,7 +9,7 @@ FROM ruby:2.7.6
 # RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs default-mysql-client vim
 # RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs
 RUN apt-get update -qq && apt-get install -y build-essential libpq-dev default-mysql-client vim
-RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - && apt-get install -y nodejs
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - && apt-get install -y nodejs
 
 # For webpacker
 # Yarn not installed. Please download and install Yarn from https://yarnpkg.com/lang/en/docs/install/
