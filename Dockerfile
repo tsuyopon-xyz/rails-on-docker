@@ -15,8 +15,9 @@ RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - && apt-get instal
 # Yarn not installed. Please download and install Yarn from https://yarnpkg.com/lang/en/docs/install/
 RUN npm install --global yarn
 
-
+ENV TZ Asia/Tokyo
 ENV APP /app
+
 RUN mkdir ${APP}
 WORKDIR ${APP}
 

@@ -16,7 +16,10 @@ ps: ## Check container status
 rails_dbcreate: ## run rails db:create in docker container
 	docker compose run --rm web bin/rails db:create
 
-rails_login: ## run rails db:create in docker container
+rails_console: ## run rails console in web(rails) container
+	docker compose run --rm web bin/rails console
+
+rails_login: ## login docker container of web(rails env)
 	docker compose run --rm web bash
 
 help: ## Show options
