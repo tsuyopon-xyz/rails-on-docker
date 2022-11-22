@@ -11,6 +11,7 @@ gem 'webpacker', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.4', require: false
+gem 'ansi', '~> 1.5'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -27,6 +28,11 @@ group :test do
   gem 'capybara', '>= 3.26'
   gem 'selenium-webdriver', '>= 4.0.0.rc1'
   gem 'webdrivers'
+  gem 'rails-controller-testing', '>= 1.0.4'
+  gem 'minitest',                 '>= 5.11.3'
+  gem 'minitest-reporters',       '>= 1.3.8'
+  gem 'guard',                    '>= 2.16.2'
+  gem 'guard-minitest',           '>= 2.4.6'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
