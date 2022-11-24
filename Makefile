@@ -17,10 +17,10 @@ build: ## build docker compose
 	docker compose build
 
 dbcreate: ## run rails db:create in docker container
-	docker compose run web bin/rails db:create
+	docker compose run web --rm bin/rails db:create
 
 dbmigrate: ## run "bin/rails db:migrate"
-	docker compose run web bin/rails db:migrate
+	docker compose run web --rm bin/rails db:migrate
 
 test: ## run "bin/rails test"
 	docker compose run --rm web bin/rails test
