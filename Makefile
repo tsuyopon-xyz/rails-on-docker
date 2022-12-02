@@ -37,6 +37,9 @@ login: ## login docker container of web(rails env)
 bundle_install: ## run bundle install
 	docker compose run --rm web bundle install
 
+byebug: ## run debugger(byebug) on a Docker container.
+	docker attach rails-tutorial-v6-web-1
+
 help: ## Show options
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
 		awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'

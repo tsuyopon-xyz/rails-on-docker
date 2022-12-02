@@ -3,9 +3,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    puts '=============='
-    p params
-    puts '=============='
     @user = User.find(params[:id])
   end
 end

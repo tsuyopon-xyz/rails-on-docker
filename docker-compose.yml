@@ -21,6 +21,10 @@ services:
       - 3000:3000
     depends_on:
       - db
+    # To use "debugger" interactively on a console.
+    # http://www.code-magagine.com/?p=8697
+    tty: true
+    stdin_open: true
 
 volumes:
   mysql_data:
