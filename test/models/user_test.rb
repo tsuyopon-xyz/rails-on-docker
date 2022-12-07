@@ -85,4 +85,15 @@ class UserTest < ActiveSupport::TestCase
     @user.password = @user.password_confirmation = "a" * 5
     assert_not @user.valid?
   end
+
+  test "remember_digest should set digest value when calling the User#remember method" do
+    # Fixture data has no remember_digest data.
+    assert @user.remember_digest.nil?
+
+    @user.remember
+
+    # Set digest value to the remember_digest attribute after calling User#remember method.
+    assert_not @user.remember_digest.nil?
+    assert @user.remember_digest.length > 0
+  end
 end
