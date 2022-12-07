@@ -40,4 +40,23 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", logout_path,      count: 0
     assert_select "a[href=?]", user_path(@user), count: 0
   end
+
+  test "login with remembering" do
+    log_in_as(@user, remember_me: '1')
+    assert_equal cookies[:remember_token], assigns(:user).remember_token
+
+    # https://philna.sh/blog/2020/01/15/test-signed-cookies-in-rails/
+    jar = ActionDispatch::Cookies::CookieJar.build(request, cookies.to_hash)
+    assert_equal jar.encrypted[:user_id], assigns(:user).id
+  end
+
+  test "login without remembering" do
+    # cookieを保存してログイン
+    log_in_as(@user, remember_me: '1')
+    delete logout_path
+    # cookieを削除してログイン
+    log_in_as(@user, remember_me: '0')
+    assert_empty cookies[:remember_token]
+    assert_empty cookies[:user_id]
+  end
 end
