@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
     # 上のコードと同じ意味
     if user&.authenticate(params[:session][:password])
       log_in user
+      remember user
       redirect_to current_user
     else
       # エラーメッセージを作成する
