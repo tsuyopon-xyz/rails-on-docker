@@ -96,4 +96,8 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.remember_digest.nil?
     assert @user.remember_digest.length > 0
   end
+
+  test "authenticated? should return false for a user with nil digest" do
+    assert_not @user.authenticated?('')
+  end
 end
