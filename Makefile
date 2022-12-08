@@ -40,6 +40,10 @@ bundle_install: ## run bundle install
 byebug: ## run debugger(byebug) on a Docker container.
 	docker attach rails-tutorial-v6-web-1
 
+# https://zenn.dev/tzover/articles/docker_tz_220406#%E7%B7%A8%E9%9B%86%E3%81%97%E3%81%9F-docker-container-%E3%81%8B%E3%82%89%E6%96%B0%E3%81%97%E3%81%84-image-%E3%82%92-local-%E3%81%AB%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B
+docker_commit: ## Run this after bundle install on docker container
+	#docker commit {CONTAINER_ID} rails-tutorial-v6-web
+
 help: ## Show options
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
 		awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
