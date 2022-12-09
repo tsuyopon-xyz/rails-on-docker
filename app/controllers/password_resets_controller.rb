@@ -1,6 +1,11 @@
+# (1)パスワード再設定の有効期限が切れていないか
+# (2)無効なパスワードであれば失敗させる（失敗した理由も表示する）
+# (3)新しいパスワードが空文字列になっていないか（ユーザー情報の編集ではOKだった）
+# (4)新しいパスワードが正しければ、更新する
 class PasswordResetsController < ApplicationController
   before_action :get_user,   only: [:edit, :update]
   before_action :valid_user, only: [:edit, :update]
+  before_action :check_expiration, only: [:edit, :update]    # （1）への対応
 
   def new
   end
@@ -21,7 +26,25 @@ class PasswordResetsController < ApplicationController
   def edit
   end
 
+  def update
+    if params[:user][:password].empty?                  # （3）への対応
+      @user.errors.add(:password, :blank)
+      render 'edit'
+    elsif @user.update(user_params)                     # （4）への対応
+      log_in @user
+      flash[:success] = "Password has been reset."
+      redirect_to @user
+    else
+      render 'edit'                                     # （2）への対応
+    end
+  end
+
   private
+    def user_params
+      params.require(:user).permit(:password, :password_confirmation)
+    end
+
+    # beforeフィルタ
 
     def get_user
       @user = User.find_by(email: params[:email])
@@ -32,6 +55,14 @@ class PasswordResetsController < ApplicationController
       unless (@user && @user.activated? &&
               @user.authenticated?(:reset, params[:id]))
         redirect_to root_url
+      end
+    end
+
+    # トークンが期限切れかどうか確認する
+    def check_expiration
+      if @user.password_reset_expired?
+        flash[:danger] = "Password reset has expired."
+        redirect_to new_password_reset_url
       end
     end
 end
