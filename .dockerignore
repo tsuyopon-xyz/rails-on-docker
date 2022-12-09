@@ -13,3 +13,4 @@ docker-compose.*
 Dockerfile
 log
 Makefile
+.DS_Store
